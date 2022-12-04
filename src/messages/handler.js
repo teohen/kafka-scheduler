@@ -1,4 +1,4 @@
-const { kafkaManager } = require('../commons')
+const { kafkaManager } = require('../utils')
 
 const start = async (topicsToConsume) => {
   try {
