@@ -1,4 +1,24 @@
 const { kafkaManager } = require('../utils')
+const producer = require('./producer')
+const timer = require('../timers')
+
+
+const produceTargetMessage = ({ payload, topic, key }) => {
+  producer.produceSchedulerMessage(topic, key, payload)
+}
+
+const processMessage = async ({ _topic, _partition, message, _heartbeat, _pause }) => {
+  const headers = {}
+  for (const [key, value] of Object.entries(message.headers)) {
+    headers[key] = value.toString()
+  }
+
+  timer.setTimer(headers['produce-after'], produceTargetMessage, {
+    payload: message.value,
+    topic: headers['target-topic'],
+    key: message.key.toString()
+  })
+}
 
 const start = async (topicsToConsume) => {
   try {
@@ -10,17 +30,7 @@ const start = async (topicsToConsume) => {
 
     await consumer.run({
       autoCommit: false,
-      eachMessage: async ({ _topic, _partition, message, _heartbeat, _pause }) => {
-        const headers = {}
-         for (const [key, value] of Object.entries(message.headers)){
-          headers[key] = value.toString()
-         }
-          console.log({
-            key: message.key.toString(),
-            value: message.value.toString(),
-            headers
-          })
-      }
+      eachMessage: processMessage
     })
   } catch (err) {
     console.log('Error sending requests: ', err)
