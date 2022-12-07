@@ -29,8 +29,7 @@ const start = async (topicsToConsume) => {
   try {
     console.log('consuming...')
     const consumer = kafkaManager.getConsumer()
-    offsets = await kafkaManager.getLatestOffset(process.env.SCHEDULERS_TOPIC)
-
+  
     await consumer.connect()
     await consumer.subscribe({ topics: topicsToConsume, fromBeginning: true })
 

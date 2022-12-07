@@ -1,3 +1,3 @@
-const setTimer = require('./setScheduleTimer')
+const setTimer = require('./schedule-timer')
 
 module.exports = setTimer
