@@ -1,8 +1,10 @@
-const handler = require('./handler');
+const missedSchedulesHandler = require('./missed-schedules-handler');
 const producer = require('./producer')
+const routes = require('./routes')
 
 
 module.exports = {
-  handler,
-  producer
+  missedSchedulesHandler,
+  producer,
+  routes
 }
