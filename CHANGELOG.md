@@ -12,12 +12,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
  - creates the countdown module
  - creates the event module
  
-### Fixed
+### Changed
  - encapsulates some modules
 
 ## [1.3.1] - 2022-12-05
  
-### Fixed
+### Changed
  - changes the camelCase named files and fixes some minor bugs
 
 ## [1.3.0] - 2022-12-05
