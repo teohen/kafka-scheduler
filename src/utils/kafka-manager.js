@@ -21,7 +21,7 @@ const getClientAdmin = () => {
   return admin
 }
 
-
+// FIXME: encapsulate the producer, consumer and admin objects
 
 module.exports = {
   getProducer,

@@ -1,6 +1,6 @@
 {
   "name": "kafka-scheduler",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "description": "A simple service that schedule messages to be sent to a kafka topic",
   "main": "index.js",
   "scripts": {

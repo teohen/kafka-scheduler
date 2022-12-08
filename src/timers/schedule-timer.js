@@ -1,5 +1,5 @@
 const { add } = require('date-fns')
-
+// FIXME: deal with this later 
 const getDiff = (later) => {
   return later - new Date().getTime();
 }

@@ -1,0 +1,121 @@
+{
+  "todo": [
+    {
+      "assignedTo": {
+        "name": "teteo"
+      },
+      "creation_time": "2022-12-08T00:15:36.488Z",
+      "id": "5",
+      "references": [],
+      "title": "[external] create the \"key\" system so that events can be commited and unique garanteed"
+    },
+    {
+      "assignedTo": {
+        "name": "teteo"
+      },
+      "creation_time": "2022-12-08T00:13:51.810Z",
+      "id": "1",
+      "references": [],
+      "title": "[external] create the route for the requests handled by the http-caller"
+    },
+    {
+      "assignedTo": {
+        "name": "teteo"
+      },
+      "creation_time": "2022-12-08T00:15:40.315Z",
+      "id": "6",
+      "references": [],
+      "title": "[http-caller] create the retry system"
+    },
+    {
+      "assignedTo": {
+        "name": "teteo"
+      },
+      "creation_time": "2022-12-08T00:14:10.824Z",
+      "id": "4",
+      "references": [],
+      "title": "[kafka-scheduler] create a \"safety net\" for the repeated messages that already been commited save in cache so that recent messages"
+    },
+    {
+      "assignedTo": {
+        "name": "teteo"
+      },
+      "creation_time": "2022-12-08T00:14:00.374Z",
+      "id": "2",
+      "references": [],
+      "title": "[kafka-scheduler] Produce the commiting event after the request event is sent"
+    },
+    {
+      "assignedTo": {
+        "name": "teteo"
+      },
+      "creation_time": "2022-12-08T00:14:07.036Z",
+      "id": "3",
+      "references": [],
+      "title": "[kafka-scheduler] reset the offsets of the consumers of schedulers topics"
+    },
+    {
+      "assignedTo": {
+        "name": "teteo"
+      },
+      "creation_time": "2022-12-08T00:15:43.590Z",
+      "id": "7",
+      "references": [],
+      "title": "create the tests for the whole thing"
+    }
+  ],
+  "in-progress": [
+    {
+      "assignedTo": {
+        "name": "teteo"
+      },
+      "creation_time": "2022-12-08T00:15:53.638Z",
+      "id": "8",
+      "references": [],
+      "title": "[kafka-scheduler] create the deletion system of a schedule based on the keys of the topic",
+      "details": {
+        "content": " if a key message has an empty value (that message has been deleted) and the scheduler should ignore its scheduling.\n - Possible solutions:store the events so that the messages can be sent at a later time",
+        "mime": "text/markdown"
+      }
+    }
+  ],
+  "testing": [],
+  "done": [
+    {
+      "assignedTo": {
+        "name": "teteo"
+      },
+      "creation_time": "2022-12-08T00:16:02.828Z",
+      "id": "9",
+      "references": [],
+      "title": "create topic schedule-message"
+    },
+    {
+      "assignedTo": {
+        "name": "teteo"
+      },
+      "creation_time": "2022-12-08T00:17:06.517Z",
+      "id": "14",
+      "references": [],
+      "title": "React to the scheduler topic consume topic \"schedule-message\""
+    },
+    {
+      "assignedTo": {
+        "name": "teteo"
+      },
+      "creation_time": "2022-12-08T00:16:11.224Z",
+      "id": "11",
+      "references": [],
+      "title": "Schedule the topics creation for the day with the timers"
+    },
+    {
+      "assignedTo": {
+        "name": "teteo"
+      },
+      "creation_time": "2022-12-08T00:16:59.752Z",
+      "id": "13",
+      "references": [],
+      "title": "Schedule the topics creation for the day with the timers"
+    }
+  ]
+}

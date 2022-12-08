@@ -2,6 +2,12 @@
 A simple service that schedule messages to be sent to a kafka topic
 
 
+# added
+## creates the logic of start the timers setup after processing the messages on the topic
+## creates the countdown module
+## creates the event module
+## encapsulates some modules
+
 # fixed
 ## changes the camelCase named files and fixes some minor bugs
 
