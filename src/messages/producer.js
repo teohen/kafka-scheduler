@@ -1,16 +1,8 @@
 const { kafkaManager } = require('../utils')
 
-const producer = kafkaManager.getProducer()
-
 const produceSchedulerMessage = async (topic, key, payload) => {
-  await producer.connect()
-  await producer.send({
-    topic,
-    messages: [{
-      "key": key,
-      "value": payload
-    }],
-  })
+  await kafkaManager.produceMessage(payload, topic, key)
+  console.log(`message produced to topic ${topic} - key: ${key}`)
 }
 
 module.exports = {

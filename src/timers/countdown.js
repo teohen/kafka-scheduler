@@ -1,7 +1,7 @@
 const { eventManager } = require('../utils')
 let counter = null
 
-const setCountdown = (ms, eventToEmit) => {
+const setCountdown = (ms) => {
   counter = setTimeout(() => {
     eventManager.emitSchedulesStored()
   }, ms)

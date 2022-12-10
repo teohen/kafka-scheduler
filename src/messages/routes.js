@@ -1,8 +1,8 @@
-const { storeManager } = require('../utils')
+const { storageManager} = require('../utils')
 
 const routes = (app) => {
   app.get('/stores', (req, res) => {
-    const result = storeManager.getStoredItems()
+    const result = storageManager.getStoredItems()
     res.status(200).send(result)
   });
 }
