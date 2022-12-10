@@ -1,12 +1,25 @@
-const { eventManager } = require('../utils')
-const { storageManager } = require('../utils')
+const { eventManager, storageManager } = require('../utils')
+const scheduleTimer = require('./schedule-timer');
+const producer = require('../messages/producer');
 
 const init = () => {
+  const produceMessage = ({ topic, key, payload }) => {
+    producer.produceSchedulerMessage(topic, key, payload)
+  }
+
   eventManager.onSchedulesStored(() => {
-    // TODO: every time the schedules stored event is emitted, iterate on the store and create the timers (updating or canceling the existing ones)
     console.log('setting up timers')
     const storedSchedules = storageManager.getStoredItems()
-    console.log(storedSchedules)
+
+    storedSchedules.forEach((schedule) => {
+      const timerId = scheduleTimer.setTimer(schedule.produceAfter, produceMessage, {
+        topic: schedule.targetTopic,
+        key: schedule.targetKey,
+        payload: schedule.payload
+      })
+
+      storageManager.updateItem(schedule.schedulerKey, { ...schedule, timerId })
+    })
   })
 }
 

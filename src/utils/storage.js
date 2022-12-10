@@ -1,21 +1,27 @@
-let store = {}
+let storage = {}
 
 const init = () => {
-  store = new Map()
+  storage = new Map()
 }
 
 const setItem = (key, value) => {
   console.log(`setting item with key: ${key}`)
-  store.set(key, value)
+  storage.set(key, value)
 }
 
 const getStoredItems = () => {
-  const storedItems = Array.from(store.values())
+  const storedItems = Array.from(storage.values())
   return storedItems
+}
+
+const updateItem = (key, data) => {
+  console.log('updating storage')
+  setItem(key, data)
 }
 
 module.exports = {
   setItem,
   init,
-  getStoredItems
+  getStoredItems,
+  updateItem
 }

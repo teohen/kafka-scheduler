@@ -23,8 +23,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [1.3.0] - 2022-12-05
  
 ### Added
- - adds the store for the schedules
- - adds a route for getting all the schedules on the store
+ - adds the storage for the schedules
+ - adds a route for getting all the schedules on the storage
  - creates the missed schedules handler for the schedules topic
  
 ## [1.2.0] - 2022-12-04

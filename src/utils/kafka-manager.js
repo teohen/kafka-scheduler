@@ -35,8 +35,6 @@ const produceMessage = async (payload, topic, key) => {
 const consumeTopic = async (topicsToConsume, processMessage) => {
   try {
     console.log('consuming...')
-    const consumer = kafkaManager.getConsumer()
-
     await consumer.connect()
     await consumer.subscribe({ topics: topicsToConsume, fromBeginning: true })
 
