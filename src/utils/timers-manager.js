@@ -1,3 +1,6 @@
+const eventManager = require('./event-manager')
+let counter = null
+
 const getDiff = (later) => {
   return later - new Date().getTime();
 }
@@ -13,7 +16,28 @@ const updateTimer = (timerId, cb, params) => {
   return setTimer(cb, params)
 }
 
+const setCountdown = (ms) => {
+  counter = setTimeout(() => {
+    eventManager.emitSchedulesStored()
+  }, ms)
+}
+
+const resetCountdown = (ms, eventToEmit) => {
+  clearTimeout(counter)
+  setCountdown(ms, eventToEmit)
+}
+
+const countdownLoop = (ms, eventToEmit) => {
+  if (!counter) {
+    setCountdown(ms, eventToEmit)
+  } else {
+    resetCountdown(ms, eventToEmit)
+  }
+
+}
+
 module.exports = {
   setTimer,
-  updateTimer
+  updateTimer,
+  countdownLoop
 }

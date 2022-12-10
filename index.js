@@ -17,3 +17,7 @@ missedSchedulesHandler.start([process.env.SCHEDULERS_TOPIC])
 app.listen(PORT, () => {
   console.log(`Running on port: ${PORT}`)
 });
+
+
+// TODO: every time a timer is triggered, the a topic should be produced to the schedules topic AND 
+//        the storage will be updated with a empty schedule (and cancelling any existing timer)

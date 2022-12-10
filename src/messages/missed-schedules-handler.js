@@ -1,10 +1,8 @@
 const { kafkaManager, storageManager } = require('../utils')
-const { countdown, timersManager } = require('../utils')
+const { timersManager } = require('../utils')
 
 const { SCHEDULES_STORED } = process.env
 
-// TODO: reset startedTimestamp every time that the offsets are restarted as well 
-// TODO: make the startedTimestamp global (and maybe able to reset to another date)
 
 const produceMessage = ({ topic, key, payload }) => {
   producer.produceSchedulerMessage(topic, key, payload)
@@ -55,7 +53,7 @@ const processMessage = async ({ _topic, _partition, message, _heartbeat, _pause 
   } else {
     setScheduleOnStorage(scheduleData.targetKey.toString(), scheduleData)
   }
-  countdown.countdownLoop(2000, SCHEDULES_STORED)
+  timersManager.countdownLoop(2000, SCHEDULES_STORED)
 }
 
 const start = async (topicsToConsume) => {

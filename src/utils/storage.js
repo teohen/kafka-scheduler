@@ -3,7 +3,7 @@ let storage = {}
 const init = () => {
   storage = new Map()
 }
-// TODO: if the stored schedule have a timerId property, should cancel the timer and set another one
+
 const setItem = (key, value) => {
   storage.set(key, value)
 }
