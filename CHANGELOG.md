@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.5.0] - 2022-12-10
+
+### Added
+ - creates the logic of setting and updating the schedules on the storage, with its respective timers
+ - creates and encapsulates the timers module
+ 
+### Changed
+ - encapsulates the kafkaManager module
+ - fixes some minor bugs
+ - removes some old TODOs and fixes some FIXMEs
+
 ## [1.4.0] - 2022-12-07
 
 ### Added

@@ -19,5 +19,11 @@ app.listen(PORT, () => {
 });
 
 
-// TODO: every time a timer is triggered, the a topic should be produced to the schedules topic AND 
-//        the storage will be updated with a empty schedule (and cancelling any existing timer)
+// TODO: every time a timer is triggered, a message should be produced to the schedules topic AND, by consequence, 
+//        the storage will be updated with a empty schedule (cancelling any existing timer)
+
+
+// if a empty message comes and NO TIMER is present on the storage, cancel the timer and DO NOT SET the timer for that schedule
+
+
+// PS: its okay to clear and triggered timeout 
