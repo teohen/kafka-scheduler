@@ -1,5 +1,5 @@
 const { eventManager, storageManager } = require('../utils')
-const scheduleTimer = require('./schedule-timer');
+const timersManager = require('./timers-manager');
 const producer = require('../messages/producer');
 
 const init = () => {
@@ -12,7 +12,7 @@ const init = () => {
     const storedSchedules = storageManager.getStoredItems()
 
     storedSchedules.forEach((schedule) => {
-      const timerId = scheduleTimer.setTimer(schedule.produceAfter, produceMessage, {
+      const timerId = timersManager.setTimer(schedule.produceAfter, produceMessage, {
         topic: schedule.targetTopic,
         key: schedule.targetKey,
         payload: schedule.payload

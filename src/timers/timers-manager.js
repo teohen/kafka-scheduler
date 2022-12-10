@@ -1,15 +1,20 @@
-// FIXME: deal with this later 
+// FIXME: MOVE TO UTILS
 const getDiff = (later) => {
   return later - new Date().getTime();
 }
 
 const setTimer = (setAfter, cb, params) => {
   const diff = getDiff(setAfter)
-  console.log(`setting timer to: ${diff}`)
   const timerId = setTimeout(cb, diff, params)
   return timerId
 }
 
+const updateTimer = (timerId, cb, params) => {
+  clearTimeout(timerId)
+  return setTimer(cb, params)
+}
+
 module.exports = {
-  setTimer
+  setTimer,
+  updateTimer
 }

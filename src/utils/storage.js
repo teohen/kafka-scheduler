@@ -3,10 +3,13 @@ let storage = {}
 const init = () => {
   storage = new Map()
 }
-
+// TODO: if the stored schedule have a timerId property, should cancel the timer and set another one
 const setItem = (key, value) => {
-  console.log(`setting item with key: ${key}`)
   storage.set(key, value)
+}
+
+const getItem = (key) => {
+  return storage.get(key)
 }
 
 const getStoredItems = () => {
@@ -15,13 +18,15 @@ const getStoredItems = () => {
 }
 
 const updateItem = (key, data) => {
-  console.log('updating storage')
+  console.log('updating item', key)
   setItem(key, data)
 }
+
 
 module.exports = {
   setItem,
   init,
   getStoredItems,
-  updateItem
+  updateItem,
+  getItem
 }
