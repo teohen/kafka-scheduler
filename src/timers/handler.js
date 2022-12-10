@@ -1,5 +1,5 @@
 const { eventManager, storageManager } = require('../utils')
-const timersManager = require('./timers-manager');
+const timersManager = require('../utils');
 const producer = require('../messages/producer');
 
 const init = () => {

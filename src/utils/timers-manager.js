@@ -1,4 +1,3 @@
-// FIXME: MOVE TO UTILS
 const getDiff = (later) => {
   return later - new Date().getTime();
 }

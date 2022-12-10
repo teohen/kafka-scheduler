@@ -1,5 +1,5 @@
 const { kafkaManager, storageManager } = require('../utils')
-const { countdown, timersManager } = require('../timers')
+const { countdown, timersManager } = require('../utils')
 
 const { SCHEDULES_STORED } = process.env
 
