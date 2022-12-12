@@ -1,11 +1,13 @@
 const { kafkaManager, storageManager } = require('../utils')
 const { timersManager } = require('../utils')
+const producer = require('./producer')
 
 const { SCHEDULES_STORED } = process.env
 
-
-const produceMessage = ({ topic, key, payload }) => {
+// TODO: probably this needs to be centralized with the timers.handler function
+const produceMessage = ({ topic, key, payload, schedulerKey }) => {
   producer.produceSchedulerMessage(topic, key, payload)
+  producer.produceEmptyMessage(schedulerKey)
 }
 
 const updateScheduleOnStorage = (key, storedSchedule) => {
@@ -14,7 +16,8 @@ const updateScheduleOnStorage = (key, storedSchedule) => {
   const newTimerId = timersManager.updateTimer(storedSchedule.timerId, produceMessage, {
     topic: storedSchedule.targetTopic,
     key: schedule.targetKey,
-    payload: schedule.payload
+    payload: schedule.payload,
+    schedulerKey: schedule.schedulerKey
   })
 
   storageManager.updateItem(key, { storedSchedule, timerId: newTimerId })
@@ -22,13 +25,13 @@ const updateScheduleOnStorage = (key, storedSchedule) => {
 
 const setScheduleOnStorage = (key, schedule) => {
   console.log(`setting schedule on the store with the key: ${key}`)
-  const { produceAfter, payload, targetTopic, targetKey } = schedule
+  const { produceAfter, payload, targetTopic, targetKey, schedulerKey } = schedule
   storageManager.setItem(key, {
     produceAfter,
     payload,
     targetTopic,
     targetKey,
-    schedulerKey: key
+    schedulerKey
   })
 }
 
@@ -57,9 +60,9 @@ const processMessage = async ({ _topic, _partition, message, _heartbeat, _pause 
   }
 
   if (storedSchedule?.timerId) {
-    updateScheduleOnStorage(scheduleData.targetKey.toString(), { scheduleData, timerId: storedSchedule.timerId })
+    updateScheduleOnStorage(messageKey, { scheduleData, timerId: storedSchedule.timerId })
   } else {
-    setScheduleOnStorage(scheduleData.targetKey.toString(), scheduleData)
+    setScheduleOnStorage(messageKey, scheduleData)
   }
   timersManager.countdownLoop(2000, SCHEDULES_STORED)
 }
