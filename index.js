@@ -12,7 +12,7 @@ routes(app)
 
 timers.handler.init()
 storageManager.init()
-missedSchedulesHandler.start([process.env.SCHEDULERS_TOPIC])
+missedSchedulesHandler.start([process.env.SCHEDULES_TOPIC])
 
 app.listen(PORT, () => {
   console.log(`Running on port: ${PORT}`)
