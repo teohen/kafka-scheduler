@@ -5,6 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.6.0] - 2022-12-10
+
+### Added
+ - Cancels the storing of an empty message.
+ - Produces an empty message after an top
+ 
+### Changed
+ - fixes the schedules topic name
+ - fixes a bug with the handling in the updating the storage
+
 ## [1.5.0] - 2022-12-10
 
 ### Added
