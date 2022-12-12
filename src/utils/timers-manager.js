@@ -33,11 +33,15 @@ const countdownLoop = (ms, eventToEmit) => {
   } else {
     resetCountdown(ms, eventToEmit)
   }
+}
 
+const cancelTimer = (id) => {
+  clearTimeout(id)
 }
 
 module.exports = {
   setTimer,
   updateTimer,
-  countdownLoop
+  countdownLoop,
+  cancelTimer
 }

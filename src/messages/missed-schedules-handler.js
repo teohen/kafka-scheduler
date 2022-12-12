@@ -22,7 +22,7 @@ const updateScheduleOnStorage = (key, storedSchedule) => {
 
 const setScheduleOnStorage = (key, schedule) => {
   console.log(`setting schedule on the store with the key: ${key}`)
-  const { produceAfter, payload, targetTopic, targetKey, schedulerKey } = schedule
+  const { produceAfter, payload, targetTopic, targetKey } = schedule
   storageManager.setItem(key, {
     produceAfter,
     payload,
@@ -34,18 +34,26 @@ const setScheduleOnStorage = (key, schedule) => {
 
 const processMessage = async ({ _topic, _partition, message, _heartbeat, _pause }) => {
   const headers = {}
+  const messageKey = message.key.toString()
   for (const [key, value] of Object.entries(message.headers)) {
     headers[key] = value.toString()
   }
 
-  const storedSchedule = storageManager.getItem(message.key.toString())
+  const storedSchedule = storageManager.getItem(messageKey)
+
+  if (message.value === null) {
+    console.log('message is empty')
+    storageManager.deleteItem(messageKey)
+    timersManager.cancelTimer(storedSchedule?.timerId)
+    return
+  }
 
   const scheduleData = {
     produceAfter: headers['produce-after'],
     payload: message.value,
     targetTopic: headers['target-topic'],
     targetKey: headers['target-key'],
-    schedulerKey: message.key.toString()
+    schedulerKey: messageKey
   }
 
   if (storedSchedule?.timerId) {

@@ -22,11 +22,16 @@ const updateItem = (key, data) => {
   setItem(key, data)
 }
 
+const deleteItem = (key) => {
+  storage.delete(key)
+}
+
 
 module.exports = {
   setItem,
   init,
   getStoredItems,
   updateItem,
-  getItem
+  getItem,
+  deleteItem
 }
