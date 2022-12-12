@@ -3,8 +3,9 @@ const { timersManager } = require('../utils');
 const producer = require('../messages/producer');
 
 const init = () => {
-  const produceMessage = ({ topic, key, payload }) => {
+  const produceMessage = ({ topic, key, payload, schedulerKey }) => {
     producer.produceSchedulerMessage(topic, key, payload)
+    producer.produceEmptyMessage(schedulerKey)
   }
 
   eventManager.onSchedulesStored(() => {
@@ -15,9 +16,11 @@ const init = () => {
       const timerId = timersManager.setTimer(schedule.produceAfter, produceMessage, {
         topic: schedule.targetTopic,
         key: schedule.targetKey,
-        payload: schedule.payload
+        payload: schedule.payload,
+        schedulerKey: schedule.schedulerKey
       })
 
+      console.log('adding timers to the respective items on the storage')
       storageManager.updateItem(schedule.schedulerKey, { ...schedule, timerId })
     })
   })

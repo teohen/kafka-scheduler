@@ -5,6 +5,11 @@ const produceSchedulerMessage = async (topic, key, payload) => {
   console.log(`message produced to topic ${topic} - key: ${key}`)
 }
 
+const produceEmptyMessage = async (key) => {
+  await produceSchedulerMessage('schedules', key, null)
+}
+
 module.exports = {
-  produceSchedulerMessage
+  produceSchedulerMessage,
+  produceEmptyMessage
 }
