@@ -6,10 +6,15 @@ const produceSchedulerMessage = async (topic, key, payload) => {
 }
 
 const produceEmptyMessage = async (key) => {
+  console.log('Sending empty message to schedules topic with key', key)
   await produceSchedulerMessage('schedules', key, null)
 }
 
+const produceMessageAndEmptyAfter = async ({ topic, key, payload, schedulerKey }) => {
+  await produceSchedulerMessage(topic, key, payload)
+  await produceEmptyMessage(schedulerKey)
+}
+
 module.exports = {
-  produceSchedulerMessage,
-  produceEmptyMessage
+  produceMessageAndEmptyAfter
 }

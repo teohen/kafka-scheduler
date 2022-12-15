@@ -18,9 +18,4 @@ app.listen(PORT, () => {
   console.log(`Running on port: ${PORT}`)
 });
 
-
-
-// FIXME: rename the file missed-schedules-handler for something better
-
-
 // TODO:  add a limit to the maxDate that the handler should store

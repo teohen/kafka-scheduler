@@ -4,16 +4,10 @@ const producer = require('./producer')
 
 const { SCHEDULES_STORED } = process.env
 
-// TODO: probably this needs to be centralized with the timers.handler function
-const produceMessage = ({ topic, key, payload, schedulerKey }) => {
-  producer.produceSchedulerMessage(topic, key, payload)
-  producer.produceEmptyMessage(schedulerKey)
-}
-
 const updateScheduleOnStorage = (key, storedSchedule) => {
   console.log(`updating schedule on storage. Key: ${key}`)
 
-  const newTimerId = timersManager.updateTimer(storedSchedule.timerId, produceMessage, {
+  const newTimerId = timersManager.updateTimer(storedSchedule.timerId, producer.produceMessageAndEmptyAfter, {
     topic: storedSchedule.targetTopic,
     key: schedule.targetKey,
     payload: schedule.payload,
