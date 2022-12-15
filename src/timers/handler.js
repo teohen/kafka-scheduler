@@ -1,6 +1,6 @@
 const { eventManager, storageManager } = require('../utils')
 const { timersManager } = require('../utils');
-const producer = require('../messages/producer');
+const producer = require('../schedules/producer');
 
 const init = () => {
   const produceMessage = ({ topic, key, payload, schedulerKey }) => {

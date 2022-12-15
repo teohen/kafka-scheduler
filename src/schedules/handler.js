@@ -71,7 +71,7 @@ const start = async (topicsToConsume) => {
   try {
     await kafkaManager.consumeTopic(topicsToConsume, processMessage)
   } catch (err) {
-    console.log('Error handling the missed schedules', err)
+    console.log('Error handling the schedules', err)
   }
 }
 
