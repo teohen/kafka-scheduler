@@ -42,11 +42,7 @@ const shouldStoreSchedule = (message, headers) => {
     console.log(`Should'nt store because the message value is empty`)
     return false
   }
-  console.log('SHOULD STORE!!!!!!!!!!', {
-    produceAfter,
-    startOfDay,
-    endOfDay
-  })
+
   return true
 }
 
