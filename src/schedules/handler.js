@@ -1,8 +1,7 @@
+const dateFns = require('date-fns')
 const { kafkaManager, storageManager } = require('../utils')
 const { timersManager } = require('../utils')
 const producer = require('./producer')
-
-const { SCHEDULES_STORED } = process.env
 
 const updateScheduleOnStorage = (key, storedSchedule) => {
   console.log(`updating schedule on storage. Key: ${key}`)
@@ -29,6 +28,28 @@ const setScheduleOnStorage = (key, schedule) => {
   })
 }
 
+const shouldStoreSchedule = (message, headers) => {
+  const produceAfter = parseInt(headers['produce-after'])
+  const startOfDay = dateFns.startOfDay(new Date()).getTime()
+  const endOfDay = dateFns.endOfDay(new Date()).getTime()
+
+  if (produceAfter < startOfDay || produceAfter > endOfDay) {
+    console.log(`Should'nt store because it's outside of time interval`)
+    return false
+  }
+
+  if (message.value === null) {
+    console.log(`Should'nt store because the message value is empty`)
+    return false
+  }
+  console.log('SHOULD STORE!!!!!!!!!!', {
+    produceAfter,
+    startOfDay,
+    endOfDay
+  })
+  return true
+}
+
 const processMessage = async ({ _topic, _partition, message, _heartbeat, _pause }) => {
   const headers = {}
   const messageKey = message.key.toString()
@@ -38,27 +59,27 @@ const processMessage = async ({ _topic, _partition, message, _heartbeat, _pause 
 
   const storedSchedule = storageManager.getItem(messageKey)
 
-  if (message.value === null) {
-    console.log('message is empty')
+  if (!shouldStoreSchedule(message, headers)) {
     storageManager.deleteItem(messageKey)
     timersManager.cancelTimer(storedSchedule?.timerId)
-    return
-  }
-
-  const scheduleData = {
-    produceAfter: headers['produce-after'],
-    payload: message.value,
-    targetTopic: headers['target-topic'],
-    targetKey: headers['target-key'],
-    schedulerKey: messageKey
-  }
-
-  if (storedSchedule?.timerId) {
-    updateScheduleOnStorage(messageKey, { scheduleData, timerId: storedSchedule.timerId })
   } else {
-    setScheduleOnStorage(messageKey, scheduleData)
+    const scheduleData = {
+      produceAfter: headers['produce-after'],
+      payload: message.value,
+      targetTopic: headers['target-topic'],
+      targetKey: headers['target-key'],
+      schedulerKey: messageKey
+    }
+
+    if (storedSchedule?.timerId) {
+      updateScheduleOnStorage(messageKey, { scheduleData, timerId: storedSchedule.timerId })
+    } else {
+      setScheduleOnStorage(messageKey, scheduleData)
+    }
+
   }
-  timersManager.countdownLoop(2000, SCHEDULES_STORED)
+
+  timersManager.countdownLoop(2000)
 }
 
 const start = async (topicsToConsume) => {

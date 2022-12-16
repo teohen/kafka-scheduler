@@ -18,4 +18,4 @@ app.listen(PORT, () => {
   console.log(`Running on port: ${PORT}`)
 });
 
-// TODO:  add a limit to the maxDate that the handler should store
+// TODO: add the bulk creation of messages on the kafka-init project
