@@ -17,5 +17,3 @@ schedules.handler.start([process.env.SCHEDULES_TOPIC])
 app.listen(PORT, () => {
   console.log(`Running on port: ${PORT}`)
 });
-
-// TODO: add the bulk creation of messages on the kafka-init project

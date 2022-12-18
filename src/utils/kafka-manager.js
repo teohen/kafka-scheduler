@@ -1,4 +1,5 @@
 const { Kafka } = require('kafkajs')
+const package = require('../../package.json')
 
 const kafka = new Kafka({
   clientId: process.env.CLIENT_ID,
@@ -7,7 +8,7 @@ const kafka = new Kafka({
 
 const admin = kafka.admin()
 const producer = kafka.producer()
-const consumer = kafka.consumer({ groupId: 'scheduler-group' })
+const consumer = kafka.consumer({ groupId: `${package.name}-group` })
 
 const getProducer = () => {
   return producer
@@ -21,13 +22,14 @@ const getClientAdmin = () => {
   return admin
 }
 
-const produceMessage = async (payload, topic, key) => {
+const produceMessage = async (payload, topic, key, headers) => {
   await producer.connect()
   await producer.send({
     topic,
     messages: [{
       "key": key,
-      "value": payload
+      "value": payload,
+      "headers": headers
     }],
   })
 }
