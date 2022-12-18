@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.7.1] - 2022-12-17
+
+### Added
+ - Adds the headers property when producing the message
+
+ ### Changed
+ - creates the consumer group based on the project's name
+ - removes unwanted console.log
+
 ## [1.7.0] - 2022-12-15
 
 ### Added
