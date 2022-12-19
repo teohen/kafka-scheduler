@@ -17,3 +17,6 @@ schedules.handler.start([process.env.SCHEDULES_TOPIC])
 app.listen(PORT, () => {
   console.log(`Running on port: ${PORT}`)
 });
+
+
+//TODO: create the safe net for too many repeated requests
