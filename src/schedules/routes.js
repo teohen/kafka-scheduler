@@ -1,4 +1,5 @@
-const { storageManager} = require('../utils')
+const { storageManager } = require('../utils')
+// TODO: remove this when the work is finished
 
 const routes = (app) => {
   app.get('/stores', (req, res) => {

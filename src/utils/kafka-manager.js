@@ -41,6 +41,7 @@ const consumeTopic = async (topicsToConsume, processMessage) => {
     await consumer.subscribe({ topics: topicsToConsume, fromBeginning: true })
 
     await consumer.run({
+      partitionsConsumedConcurrently: 2,
       autoCommit: false,
       eachMessage: processMessage
     })
@@ -50,10 +51,17 @@ const consumeTopic = async (topicsToConsume, processMessage) => {
   }
 }
 
+const resetConsumers = async (runConsumerFn) => {
+  console.log('Restarting consumers')
+  await consumer.stop()
+  runConsumerFn()
+}
+
 module.exports = {
   getProducer,
   getConsumer,
   getClientAdmin,
   produceMessage,
-  consumeTopic
+  consumeTopic,
+  resetConsumers
 }

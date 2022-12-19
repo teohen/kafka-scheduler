@@ -22,28 +22,10 @@
       "assignedTo": {
         "name": "teteo"
       },
-      "creation_time": "2022-12-08T00:15:40.315Z",
-      "id": "6",
-      "references": [],
-      "title": "[http-caller] create the retry system"
-    },
-    {
-      "assignedTo": {
-        "name": "teteo"
-      },
       "creation_time": "2022-12-08T00:14:10.824Z",
       "id": "4",
       "references": [],
       "title": "[kafka-scheduler] create a \"safety net\" for the repeated messages that already been commited save in cache so that recent messages"
-    },
-    {
-      "assignedTo": {
-        "name": "teteo"
-      },
-      "creation_time": "2022-12-08T00:14:00.374Z",
-      "id": "2",
-      "references": [],
-      "title": "[kafka-scheduler] Produce the commiting event after the request event is sent"
     },
     {
       "assignedTo": {
@@ -64,7 +46,18 @@
       "title": "create the tests for the whole thing"
     }
   ],
-  "in-progress": [
+  "in-progress": [],
+  "testing": [],
+  "done": [
+    {
+      "assignedTo": {
+        "name": "teteo"
+      },
+      "creation_time": "2022-12-08T00:15:40.315Z",
+      "id": "6",
+      "references": [],
+      "title": "[http-caller] create the retry system"
+    },
     {
       "assignedTo": {
         "name": "teteo"
@@ -77,10 +70,7 @@
         "content": " if a key message has an empty value (that message has been deleted) and the scheduler should ignore its scheduling.\n - Possible solutions:store the events so that the messages can be sent at a later time",
         "mime": "text/markdown"
       }
-    }
-  ],
-  "testing": [],
-  "done": [
+    },
     {
       "assignedTo": {
         "name": "teteo"
@@ -116,6 +106,15 @@
       "id": "13",
       "references": [],
       "title": "Schedule the topics creation for the day with the timers"
+    },
+    {
+      "assignedTo": {
+        "name": "teteo"
+      },
+      "creation_time": "2022-12-08T00:14:00.374Z",
+      "id": "2",
+      "references": [],
+      "title": "[kafka-scheduler] Produce the commiting event after the request event is sent"
     }
   ]
 }
