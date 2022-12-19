@@ -3,6 +3,12 @@ const { kafkaManager, storageManager } = require('../utils')
 const { timersManager } = require('../utils')
 const producer = require('./producer')
 
+let timerToResetConsumer = null
+
+const resetConsumers = () => {
+  kafkaManager.resetConsumers(() => start([process.env.SCHEDULES_TOPIC]))
+}
+
 const updateScheduleOnStorage = (key, storedSchedule) => {
   console.log(`updating schedule on storage. Key: ${key}`)
 
@@ -80,7 +86,10 @@ const processMessage = async ({ _topic, _partition, message, _heartbeat, _pause 
 
 const start = async (topicsToConsume) => {
   try {
-    await kafkaManager.consumeTopic(topicsToConsume, processMessage)
+    const endOfDay = dateFns.startOfTomorrow(new Date()).getTime()
+
+    kafkaManager.consumeTopic(topicsToConsume, processMessage)
+    timerToResetConsumer = timersManager.setTimer(endOfDay, resetConsumers, null)
   } catch (err) {
     console.log('Error handling the schedules', err)
   }
