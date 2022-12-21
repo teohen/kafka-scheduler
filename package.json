@@ -1,11 +1,12 @@
 {
   "name": "kafka-scheduler",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "A simple service that schedule messages to be sent to a kafka topic",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "dev": "nodemon index.js"
+    "test": "nyc mocha test",
+    "dev": "nodemon index.js",
+    "mocha": "mocha test"   
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,13 @@
     "kafkajs": "^2.2.3"
   },
   "devDependencies": {
-    "nodemon": "^2.0.20"
+    "chance": "^1.1.9",
+    "mocha": "^10.2.0",
+    "nodemon": "^2.0.20",
+    "nyc": "^15.1.0",
+    "sinon": "^15.0.1"
+  },
+  "nyc": {
+    "all": true
   }
 }

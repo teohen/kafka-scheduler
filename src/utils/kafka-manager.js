@@ -6,21 +6,8 @@ const kafka = new Kafka({
   brokers: [process.env.BROKERS]
 })
 
-const admin = kafka.admin()
 const producer = kafka.producer()
 const consumer = kafka.consumer({ groupId: `${package.name}-group` })
-
-const getProducer = () => {
-  return producer
-}
-
-const getConsumer = () => {
-  return consumer
-}
-
-const getClientAdmin = () => {
-  return admin
-}
 
 const produceMessage = async (payload, topic, key, headers) => {
   await producer.connect()
@@ -58,9 +45,6 @@ const resetConsumers = async (runConsumerFn) => {
 }
 
 module.exports = {
-  getProducer,
-  getConsumer,
-  getClientAdmin,
   produceMessage,
   consumeTopic,
   resetConsumers

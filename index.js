@@ -18,5 +18,3 @@ app.listen(PORT, () => {
   console.log(`Running on port: ${PORT}`)
 });
 
-
-//TODO: create the safe net for too many repeated requests
