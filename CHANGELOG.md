@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.9.1] - 2022-12-18
+
+### Added
+ - Adds tests for the kafka manager module
+
+ ### Changed
+ - Changes the scripts for tests
+
 ## [1.9.0] - 2022-12-18
 
 ### Added
@@ -13,7 +21,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ### Changed
  - Removes unused stuff on the kafka manager module
- 
 
 ## [1.8.0] - 2022-12-18
 
