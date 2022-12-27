@@ -1,5 +1,5 @@
 const { Kafka } = require('kafkajs')
-const package = require('../../package.json')
+const packageJson = require('../../package.json')
 
 const kafka = new Kafka({
   clientId: process.env.CLIENT_ID,
@@ -7,7 +7,7 @@ const kafka = new Kafka({
 })
 
 const producer = kafka.producer()
-const consumer = kafka.consumer({ groupId: `${package.name}-group` })
+const consumer = kafka.consumer({ groupId: `${packageJson.name}-group` })
 
 const produceMessage = async (payload, topic, key, headers) => {
   await producer.connect()
@@ -33,7 +33,7 @@ const consumeTopic = async (topicsToConsume, processMessage) => {
       eachMessage: processMessage
     })
   } catch (err) {
-    console.log(`Error consuming topic: ${topicsToConsume} - Error: ${err}`)
+    console.log(`Error consuming topic: ${topicsToConsume} - ${err}`)
     throw err
   }
 }
