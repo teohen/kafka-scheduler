@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
  - Adds tests for the event manager module
 
- ### Changed
+### Changed
  - Removes the event from the ENV and places on the event-manager module
  - Fixes the import of the kafka-manager module on the tests
 
@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
  - Adds tests for the kafka manager module
 
- ### Changed
+### Changed
  - Changes the scripts for tests
 
 ## [1.9.0] - 2022-12-18
@@ -41,7 +41,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
  - Adds the headers property when producing the message
 
- ### Changed
+### Changed
  - creates the consumer group based on the project's name
  - removes unwanted console.log
 
@@ -50,7 +50,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ### Added
  - Adds the time period rule (24h) which is used to determine if a schedule should be stored
 
- ### Changed
+### Changed
  - renames the schedule domain
  - encapsulates the producer module
 
