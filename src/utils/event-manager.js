@@ -17,5 +17,6 @@ const emitSchedulesStored = () => {
 
 module.exports = {
   onSchedulesStored,
-  emitSchedulesStored
+  emitSchedulesStored,
+  events
 }
