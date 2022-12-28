@@ -5,6 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## [1.9.2] - 2022-12-27
+
+### Added
+ - Adds tests for the event manager module
+
+ ### Changed
+ - Removes the event from the ENV and places on the event-manager module
+ - Fixes the import of the kafka-manager module on the tests
+
 ## [1.9.1] - 2022-12-18
 
 ### Added
