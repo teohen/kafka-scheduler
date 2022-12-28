@@ -42,7 +42,7 @@ describe('Kafka Manager Suit', () => {
 
 
   it('Should produce a message to a topic', async () => {
-    const { kafkaManager } = require('../src/utils')
+    const kafkaManager = require('../src/utils/kafka-manager.js')
     const argus = {
       payload: {
         id: chance.hash(),
@@ -68,7 +68,7 @@ describe('Kafka Manager Suit', () => {
   })
 
   it('Should start consuming a topic', async () => {
-    const { kafkaManager } = require('../src/utils')
+    const kafkaManager = require('../src/utils/kafka-manager.js')
 
     const argus = {
       topicsToConsume: [chance.name()],
@@ -97,7 +97,7 @@ describe('Kafka Manager Suit', () => {
 
     sinon.stub(consumer, "connect").callsFake(() => { throw error })
 
-    const { kafkaManager } = require('../src/utils')
+    const kafkaManager = require('../src/utils/kafka-manager.js')
 
     const argus = {
       topicsToConsume: [chance.word()],
@@ -118,7 +118,7 @@ describe('Kafka Manager Suit', () => {
   })
 
   it('Should call the function to reset the consumers and run the cb', async () => {
-    const { kafkaManager } = require('../src/utils')
+    const kafkaManager = require('../src/utils/kafka-manager.js')
     const obj = {
       cbReset: () => {
         console.log('cb that resets the consumers')
